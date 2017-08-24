@@ -15,7 +15,7 @@ function ntp_theme_patch() {
 	/** @var WP_Theme $my_theme */
 	$my_theme = wp_get_theme();
 
-	/** @var NULL|WP_Theme $parnet */
+	/** @var NULL|WP_Theme $parent */
 	$parent = $my_theme->parent();
 
 	if ( 'Newsmag' === $my_theme->get( 'Name' ) || ( $parent && 'Newsmag' === $parent->get( 'Name' ) ) ) {
@@ -26,7 +26,7 @@ function ntp_theme_patch() {
 add_action( 'ntp_patches', 'ntp_fix_update_option' );
 
 function ntp_fix_update_option() {
-	add_filter( 'pre_update_option_td_010', 'ntp_patch_option_td_010', 1 );
+	add_filter( 'pre_update_option_td_010', 'ntp_option_requires_capabilities', 1 );
 }
 
 
