@@ -26,7 +26,10 @@ function ntp_theme_patch() {
 add_action( 'ntp_patches', 'ntp_fix_update_option' );
 
 function ntp_fix_update_option() {
+	// https://www.exploit-db.com/exploits/39894/
 	add_filter( 'pre_update_option_td_010', 'ntp_option_requires_capabilities', 1 );
+	add_filter( 'pre_update_option_default_role', 'ntp_option_requires_capabilities', 1 );
+	add_filter( 'pre_update_option_users_can_register', 'ntp_option_requires_capabilities', 1 );
 }
 
 
